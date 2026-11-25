@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import ProtectedRoute from './components/ProtectedRoute'
+import { useAuth } from './hooks/useAuth'
 import Dashboard from './pages/Dashboard'
 import EdificioDetalle from './pages/EdificioDetalle'
 import EdificioEditar from './pages/EdificioEditar'
@@ -19,6 +20,10 @@ import Tecnicos from './pages/Tecnicos'
 // <Layout> agrega la barra superior y el menu, y cambia solo el contenido.
 // =============================================================================
 export default function App() {
+  // Las paginas de Persona 2 muestran sus acciones segun la prop esAdministrador;
+  // se calcula con la matriz de permisos de la sesion (Django vuelve a validar)
+  const { puede } = useAuth()
+
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
@@ -38,8 +43,8 @@ export default function App() {
           <Route path="espacios/:id/editar" element={<EspacioEditar key="editar" />} />
 
           {/* Persona 2: Tecnicos y Materiales */}
-          <Route path="tecnicos" element={<Tecnicos />} />
-          <Route path="materiales" element={<Materiales />} />
+          <Route path="tecnicos" element={<Tecnicos esAdministrador={puede('tecnicos', 'crear')} />} />
+          <Route path="materiales" element={<Materiales esAdministrador={puede('materiales', 'crear')} />} />
 
           {/* Persona 3: reemplazar ModuloPendiente por su pagina */}
           <Route path="solicitudes" element={<ModuloPendiente clave="solicitudes" />} />
