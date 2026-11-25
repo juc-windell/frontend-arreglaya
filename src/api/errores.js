@@ -26,9 +26,11 @@ export function interpretarError(error) {
         campos: {},
       }
     }
+    // El detalle tecnico (URL de la API) solo se muestra en la consola del navegador
+    console.error(`[ArreglaYa] Sin respuesta de ${API_URL}: revise que Django este en ejecucion y CORS.`)
     return {
       status: 0,
-      mensaje: `No se pudo conectar con la API (${API_URL}). Verifique que Django esté en ejecución, que CORS permita este origen y su conexión de red.`,
+      mensaje: 'No se pudo conectar con el servidor. Verifique su conexión e intente de nuevo.',
       campos: {},
     }
   }

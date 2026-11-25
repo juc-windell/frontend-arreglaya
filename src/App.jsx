@@ -1,24 +1,21 @@
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import ProtectedRoute from './components/ProtectedRoute'
+import Dashboard from './pages/Dashboard'
+import EdificioDetalle from './pages/EdificioDetalle'
+import EdificioEditar from './pages/EdificioEditar'
+import Edificios from './pages/Edificios'
+import EspacioDetalle from './pages/EspacioDetalle'
+import EspacioEditar from './pages/EspacioEditar'
+import Espacios from './pages/Espacios'
 import Login from './pages/Login'
 import ModuloPendiente from './pages/ModuloPendiente'
 import NotFound from './pages/NotFound'
 
 // =============================================================================
-// VERSION FASE 1 (PR de base y autenticacion).
-// En el PR siguiente se reemplaza por el App.jsx final con Dashboard,
-// Edificios y Espacios.
+// Rutas de la SPA. Todo lo que esta dentro de <ProtectedRoute> exige sesion;
+// <Layout> agrega la barra superior y el menu, y cambia solo el contenido.
 // =============================================================================
-function InicioTemporal() {
-  return (
-    <div className="py-4">
-      <h1 className="h3">ArreglaYa</h1>
-      <p className="text-body-secondary">Sesión iniciada. El dashboard se integra en la siguiente fase.</p>
-    </div>
-  )
-}
-
 export default function App() {
   return (
     <Routes>
@@ -26,13 +23,24 @@ export default function App() {
 
       <Route element={<ProtectedRoute />}>
         <Route element={<Layout />}>
-          <Route index element={<InicioTemporal />} />
-          <Route path="edificios" element={<ModuloPendiente clave="espacios" />} />
-          <Route path="espacios" element={<ModuloPendiente clave="espacios" />} />
+          <Route index element={<Dashboard />} />
+
+          {/* Modulo Espacios (Persona 1) */}
+          <Route path="edificios" element={<Edificios />} />
+          <Route path="edificios/nuevo" element={<EdificioEditar key="nuevo" />} />
+          <Route path="edificios/:id" element={<EdificioDetalle />} />
+          <Route path="edificios/:id/editar" element={<EdificioEditar key="editar" />} />
+          <Route path="espacios" element={<Espacios />} />
+          <Route path="espacios/nuevo" element={<EspacioEditar key="nuevo" />} />
+          <Route path="espacios/:id" element={<EspacioDetalle />} />
+          <Route path="espacios/:id/editar" element={<EspacioEditar key="editar" />} />
+
+          {/* Persona 2 y Persona 3: reemplazar ModuloPendiente por su pagina */}
           <Route path="tecnicos" element={<ModuloPendiente clave="tecnicos" />} />
           <Route path="materiales" element={<ModuloPendiente clave="materiales" />} />
           <Route path="solicitudes" element={<ModuloPendiente clave="solicitudes" />} />
           <Route path="ordenes" element={<ModuloPendiente clave="ordenes" />} />
+
           <Route path="*" element={<NotFound />} />
         </Route>
       </Route>
