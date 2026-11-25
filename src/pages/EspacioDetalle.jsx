@@ -185,11 +185,8 @@ export default function EspacioDetalle() {
           </>
         )}
 
-        <div className="card-footer bg-transparent d-flex flex-wrap justify-content-between align-items-center gap-2">
-          <code className="small text-body-tertiary">
-            GET /api/solicitudes/?espacio={id}&amp;page={pagina}
-          </code>
-          {total > tamanoPagina && (
+        {total > tamanoPagina && (
+          <div className="card-footer bg-transparent d-flex justify-content-end">
             <div className="btn-group btn-group-sm">
               <button
                 type="button"
@@ -211,8 +208,8 @@ export default function EspacioDetalle() {
                 Siguiente
               </button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       <ModalEliminar

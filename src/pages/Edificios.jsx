@@ -61,7 +61,7 @@ export default function Edificios() {
             <i className="bi bi-building me-2" />
             Edificios
           </h1>
-          <p className="text-body-secondary mb-0">Edificios del campus registrados en la API.</p>
+          <p className="text-body-secondary mb-0">Edificios registrados en el campus.</p>
         </div>
         {puedeCrear && (
           <Link to="/edificios/nuevo" className="btn btn-primary">
@@ -167,9 +167,7 @@ export default function Edificios() {
       </div>
 
       {!cargando && !error && (
-        <p className="small text-body-tertiary mt-2 mb-0">
-          {edificios.length} edificio(s) · <code>GET /api/edificios/</code>
-        </p>
+        <p className="small text-body-tertiary mt-2 mb-0">{edificios.length} edificio(s) registrados.</p>
       )}
 
       <ModalEliminar

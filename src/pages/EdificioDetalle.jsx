@@ -148,9 +148,6 @@ export default function EdificioDetalle() {
             </table>
           </div>
         )}
-        <div className="card-footer bg-transparent">
-          <code className="small text-body-tertiary">GET /api/espacios/?edificio={id}</code>
-        </div>
       </div>
 
       <ModalEliminar

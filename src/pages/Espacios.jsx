@@ -62,10 +62,6 @@ export default function Espacios() {
   }
 
   const hayFiltros = Boolean(filtroEdificio || filtroTipo)
-  const consulta = new URLSearchParams()
-  if (filtroEdificio) consulta.set('edificio', filtroEdificio)
-  if (filtroTipo) consulta.set('tipo', filtroTipo)
-  const rutaConsulta = `GET /api/espacios/${hayFiltros ? `?${decodeURIComponent(consulta.toString())}` : ''}`
 
   return (
     <>
@@ -146,9 +142,6 @@ export default function Espacios() {
                 Limpiar filtros
               </button>
             </div>
-          </div>
-          <div className="small text-body-tertiary mt-2">
-            Filtros aplicados en el servidor: <code>{rutaConsulta}</code>
           </div>
         </div>
       </div>

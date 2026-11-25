@@ -4,9 +4,8 @@ import { interpretarError } from '../../api/errores'
 // =============================================================================
 // Tarjeta de un indicador del dashboard.
 // "resultado" es { ok, valor } o { ok: false, error } (ver dashboardService)
-// "fuente" muestra de que endpoint sale el dato (util en la defensa)
 // =============================================================================
-export default function TarjetaIndicador({ titulo, icono, color, resultado, cargando, fuente, enlace }) {
+export default function TarjetaIndicador({ titulo, icono, color, resultado, cargando, enlace }) {
   let contenido
   if (cargando) {
     contenido = <span className="placeholder col-4 placeholder-lg" />
@@ -38,9 +37,6 @@ export default function TarjetaIndicador({ titulo, icono, color, resultado, carg
             )}
           </div>
         </div>
-      </div>
-      <div className="card-footer bg-transparent border-0 pt-0">
-        <code className="small text-body-tertiary">{fuente}</code>
       </div>
     </div>
   )

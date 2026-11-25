@@ -44,12 +44,12 @@ export default function Dashboard() {
   const porEstado = consultas?.ok ? consultas.valor.ordenes_por_estado : []
 
   const tarjetas = [
-    { clave: 'edificios', titulo: 'Edificios', icono: 'bi-building', color: 'primary', fuente: 'GET /api/edificios/', enlace: '/edificios' },
-    { clave: 'espacios', titulo: 'Espacios', icono: 'bi-door-open', color: 'info', fuente: 'GET /api/espacios/', enlace: '/espacios' },
-    { clave: 'tecnicosActivos', titulo: 'Técnicos activos', icono: 'bi-person-check', color: 'success', fuente: 'GET /api/tecnicos/?activo=true', enlace: '/tecnicos' },
-    { clave: 'solicitudesAbiertas', titulo: 'Solicitudes abiertas', icono: 'bi-clipboard', color: 'warning', fuente: 'GET /api/solicitudes/?estado=ABIERTA', enlace: '/solicitudes' },
-    { clave: 'ordenesEnProceso', titulo: 'Órdenes en proceso', icono: 'bi-tools', color: 'secondary', fuente: 'GET /api/ordenes/?estado=EN_PROCESO', enlace: '/ordenes' },
-    { clave: 'bajoStock', titulo: 'Materiales bajo stock mínimo', icono: 'bi-exclamation-triangle', color: 'danger', fuente: 'GET /api/ordenes/consultas/', enlace: '/materiales', resultado: bajoStock },
+    { clave: 'edificios', titulo: 'Edificios', icono: 'bi-building', color: 'primary', enlace: '/edificios' },
+    { clave: 'espacios', titulo: 'Espacios', icono: 'bi-door-open', color: 'info', enlace: '/espacios' },
+    { clave: 'tecnicosActivos', titulo: 'Técnicos activos', icono: 'bi-person-check', color: 'success', enlace: '/tecnicos' },
+    { clave: 'solicitudesAbiertas', titulo: 'Solicitudes abiertas', icono: 'bi-clipboard', color: 'warning', enlace: '/solicitudes' },
+    { clave: 'ordenesEnProceso', titulo: 'Órdenes en proceso', icono: 'bi-tools', color: 'secondary', enlace: '/ordenes' },
+    { clave: 'bajoStock', titulo: 'Materiales bajo stock mínimo', icono: 'bi-exclamation-triangle', color: 'danger', enlace: '/materiales', resultado: bajoStock },
   ]
 
   return (
@@ -67,7 +67,7 @@ export default function Dashboard() {
           </button>
           {actualizado && (
             <div className="small text-body-tertiary mt-1">
-              Datos de la API · {actualizado.toLocaleTimeString('es-CR')}
+              Actualizado · {actualizado.toLocaleTimeString('es-CR')}
             </div>
           )}
         </div>
@@ -81,7 +81,6 @@ export default function Dashboard() {
               titulo={t.titulo}
               icono={t.icono}
               color={t.color}
-              fuente={t.fuente}
               enlace={t.enlace}
               cargando={cargando}
               resultado={t.resultado ?? indicadores[t.clave]}
@@ -117,9 +116,8 @@ export default function Dashboard() {
       <div className="row g-3">
         <div className="col-12 col-lg-7">
           <div className="card border-0 shadow-sm h-100">
-            <div className="card-header bg-transparent d-flex justify-content-between">
+            <div className="card-header bg-transparent">
               <span className="fw-semibold">Solicitudes por edificio</span>
-              <code className="small text-body-tertiary">/api/reportes/solicitudes-por-edificio/</code>
             </div>
             <div className="card-body">
               {cargando && <div className="spinner-border spinner-border-sm text-primary" />}
@@ -161,9 +159,8 @@ export default function Dashboard() {
 
         <div className="col-12 col-lg-5">
           <div className="card border-0 shadow-sm h-100">
-            <div className="card-header bg-transparent d-flex justify-content-between">
+            <div className="card-header bg-transparent">
               <span className="fw-semibold">Órdenes por estado</span>
-              <code className="small text-body-tertiary">/api/ordenes/consultas/</code>
             </div>
             <div className="card-body">
               {cargando && <div className="spinner-border spinner-border-sm text-primary" />}
