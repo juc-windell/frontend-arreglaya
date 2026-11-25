@@ -1,124 +1,53 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
-import Tecnicos from './pages/Tecnicos';
-import Materiales from './pages/Materiales';
+import { Route, Routes } from 'react-router-dom'
+import Layout from './components/Layout'
+import ProtectedRoute from './components/ProtectedRoute'
+import Dashboard from './pages/Dashboard'
+import EdificioDetalle from './pages/EdificioDetalle'
+import EdificioEditar from './pages/EdificioEditar'
+import Edificios from './pages/Edificios'
+import EspacioDetalle from './pages/EspacioDetalle'
+import EspacioEditar from './pages/EspacioEditar'
+import Espacios from './pages/Espacios'
+import Login from './pages/Login'
+import Materiales from './pages/Materiales'
+import ModuloPendiente from './pages/ModuloPendiente'
+import NotFound from './pages/NotFound'
+import Tecnicos from './pages/Tecnicos'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+// =============================================================================
+// Rutas de la SPA. Todo lo que esta dentro de <ProtectedRoute> exige sesion;
+// <Layout> agrega la barra superior y el menu, y cambia solo el contenido.
+// =============================================================================
+export default function App() {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <Routes>
+      <Route path="/login" element={<Login />} />
 
-      <div className="ticks"></div>
+      <Route element={<ProtectedRoute />}>
+        <Route element={<Layout />}>
+          <Route index element={<Dashboard />} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          {/* Modulo Espacios (Persona 1) */}
+          <Route path="edificios" element={<Edificios />} />
+          <Route path="edificios/nuevo" element={<EdificioEditar key="nuevo" />} />
+          <Route path="edificios/:id" element={<EdificioDetalle />} />
+          <Route path="edificios/:id/editar" element={<EdificioEditar key="editar" />} />
+          <Route path="espacios" element={<Espacios />} />
+          <Route path="espacios/nuevo" element={<EspacioEditar key="nuevo" />} />
+          <Route path="espacios/:id" element={<EspacioDetalle />} />
+          <Route path="espacios/:id/editar" element={<EspacioEditar key="editar" />} />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+          {/* Persona 2: Tecnicos y Materiales */}
+          <Route path="tecnicos" element={<Tecnicos />} />
+          <Route path="materiales" element={<Materiales />} />
+
+          {/* Persona 3: reemplazar ModuloPendiente por su pagina */}
+          <Route path="solicitudes" element={<ModuloPendiente clave="solicitudes" />} />
+          <Route path="ordenes" element={<ModuloPendiente clave="ordenes" />} />
+
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Route>
+    </Routes>
   )
 }
-
-export default App
