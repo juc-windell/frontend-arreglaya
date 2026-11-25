@@ -9,8 +9,10 @@ import EspacioDetalle from './pages/EspacioDetalle'
 import EspacioEditar from './pages/EspacioEditar'
 import Espacios from './pages/Espacios'
 import Login from './pages/Login'
+import Materiales from './pages/Materiales'
 import ModuloPendiente from './pages/ModuloPendiente'
 import NotFound from './pages/NotFound'
+import Tecnicos from './pages/Tecnicos'
 
 // =============================================================================
 // Rutas de la SPA. Todo lo que esta dentro de <ProtectedRoute> exige sesion;
@@ -35,9 +37,11 @@ export default function App() {
           <Route path="espacios/:id" element={<EspacioDetalle />} />
           <Route path="espacios/:id/editar" element={<EspacioEditar key="editar" />} />
 
-          {/* Persona 2 y Persona 3: reemplazar ModuloPendiente por su pagina */}
-          <Route path="tecnicos" element={<ModuloPendiente clave="tecnicos" />} />
-          <Route path="materiales" element={<ModuloPendiente clave="materiales" />} />
+          {/* Persona 2: Tecnicos y Materiales */}
+          <Route path="tecnicos" element={<Tecnicos />} />
+          <Route path="materiales" element={<Materiales />} />
+
+          {/* Persona 3: reemplazar ModuloPendiente por su pagina */}
           <Route path="solicitudes" element={<ModuloPendiente clave="solicitudes" />} />
           <Route path="ordenes" element={<ModuloPendiente clave="ordenes" />} />
 
