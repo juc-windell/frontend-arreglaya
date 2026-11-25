@@ -1,5 +1,5 @@
 import {peticionPersona2} from '../api/persona2Client';
-const RUTA='/api/tecnicos/';
+const RUTA='/tecnicos/';
 export const tecnicoService={
   listar:(filtros={},signal)=>peticionPersona2(RUTA,{params:filtros,signal}),
   detalle:(id)=>peticionPersona2(`${RUTA}${id}/`),

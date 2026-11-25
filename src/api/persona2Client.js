@@ -1,6 +1,6 @@
 // Adaptador aislado: no modifica el cliente HTTP de la Persona 1.
 // Si Persona 1 usa AuthContext, conectar el getter desde App.jsx.
-let tokenGetter = () => localStorage.getItem('token');
+let tokenGetter = () => localStorage.getItem('arreglaya_token');
 export function configurarTokenPersona2(fn) { tokenGetter = fn; }
 const urlBase = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000').replace(/\/$/, '');
 export function apiUrlPersona2(ruta, parametros = {}) {
