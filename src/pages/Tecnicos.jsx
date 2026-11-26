@@ -121,8 +121,17 @@ export default function Tecnicos({ esAdministrador = false }) {
       setExito('Técnico eliminado.');
       cargar();
     } catch (e) {
-      setError(e.message);
-      setBorrar(null);
+      if (e.response?.status === 409) {
+        setError(
+          'No se puede eliminar este técnico porque tiene órdenes de trabajo asociadas. Para conservar el historial de mantenimiento, el técnico no puede eliminarse.'
+        );
+      } else {
+        setError(
+          e.response?.data?.detail ||
+          e.response?.data?.error ||
+          'Ocurrió un error al intentar eliminar el técnico.'
+        );
+      }
     } finally {
       setGuardando(false);
     }
