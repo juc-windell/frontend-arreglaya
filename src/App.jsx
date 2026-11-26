@@ -11,9 +11,10 @@ import EspacioEditar from './pages/EspacioEditar'
 import Espacios from './pages/Espacios'
 import Login from './pages/Login'
 import Materiales from './pages/Materiales'
-import ModuloPendiente from './pages/ModuloPendiente'
 import NotFound from './pages/NotFound'
 import Tecnicos from './pages/Tecnicos'
+import Solicitudes from './pages/Solicitudes'
+import Ordenes from './pages/Ordenes'
 
 // =============================================================================
 // Rutas de la SPA. Todo lo que esta dentro de <ProtectedRoute> exige sesion;
@@ -46,9 +47,9 @@ export default function App() {
           <Route path="tecnicos" element={<Tecnicos esAdministrador={puede('tecnicos', 'crear')} />} />
           <Route path="materiales" element={<Materiales esAdministrador={puede('materiales', 'crear')} />} />
 
-          {/* Persona 3: reemplazar ModuloPendiente por su pagina */}
-          <Route path="solicitudes" element={<ModuloPendiente clave="solicitudes" />} />
-          <Route path="ordenes" element={<ModuloPendiente clave="ordenes" />} />
+          {/* Persona 3: solicitudes y órdenes de trabajo */}
+          <Route path="solicitudes" element={<Solicitudes />} />
+          <Route path="ordenes" element={<Ordenes />} />
 
           <Route path="*" element={<NotFound />} />
         </Route>
